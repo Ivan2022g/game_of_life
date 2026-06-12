@@ -58,24 +58,7 @@ int init(int argc, char* argv[], struct GameState game_state) {
     // Инициализировать ncurses и состояние
 }
 
-void wait_for_action(int action) {
-    // ожидает нажатия на SPASE
-    while (1) {
-        if (getchar() == SPASE) {
-            break;
-        }
-    }
-}
-int game_over(struct GameState game_state) {
-    // do something...
-}
-void draw_field(struct GameState game_state) {
-    // do something...
-}
 void process(struct GameState game_state) {
-    // do something...
-}
-void do_one_life_cycle(const struct GameState game_state) {
     draw_field(game_state);
     wait_for_action(SPASE);
 
@@ -87,4 +70,22 @@ void do_one_life_cycle(const struct GameState game_state) {
     wait_for_action(SPASE);
 }
 
-void finish(struct GameState game_state) {}
+void wait_for_action(int action) {
+    // ожидает нажатия на SPASE
+    while (1) {
+        if (getchar() == SPASE) {
+            break;
+        }
+    }
+}
+int game_over(struct GameState game_state) {
+    // проверяет состояние игры на предмет того что игра закончилась
+    // был нажат пробел
+}
+void draw_field(const struct GameState game_state) {
+    // всё что делает - рисует! Ничего больше!
+}
+
+void finish(struct GameState game_state) {
+    // закрытие режима работы ncurses и очистка памяти
+}
