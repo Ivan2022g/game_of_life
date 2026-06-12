@@ -1,9 +1,11 @@
 #include <stdio.h>
 #inclide <stdlib.h>
 
-// game_state structure
+struct GameState {
 
-int process(game_state) {
+};
+
+int process(struct GameState game_state) {
     draw_field(game_state);
     wait_for_action(action);
 
@@ -14,10 +16,12 @@ int process(game_state) {
     }
     wait_for_action(action);
 }
+int init(int argc, char *argv[], struct GameState game_state) {
 
+}
 int main(int argc, char *argv[]) {
-    game_state;
-    init();
+    struct GameState game_state;
+    init( argc, argv, game_state);
     process(game_state);
     close();
 }
