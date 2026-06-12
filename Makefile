@@ -8,4 +8,4 @@ all: game
 
 game: $(SRC)
 	@mkdir -p $(BUILD_DIR)
-	$(CC) $(CFLAGS) -o $(BUILD_DIR)/$(TARGET) $(SRC)
+	$(CC) $(CFLAGS) -o $(BUILD_DIR)/$(TARGET) $(SRC) -lncurses
