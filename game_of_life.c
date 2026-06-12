@@ -51,7 +51,7 @@ int init(int argc, char* argv[], struct GameState game_state) {
     noecho();
     curs_set(0);
     nodelay(stdscr, TRUE);
-
+    cbreak();
     return 0;
 }
 
