@@ -26,17 +26,20 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
+// -------------------- MAIN FUNCTION --------------------
 void process(struct GameState game_state) {
+    // сделать вывод правил игры или меню
     draw_field(game_state);
-    wait_for_action(SPASE);
+    wait_for_action(SPACE);
 
     while (!game_over(game_state)) {
         check_press_button(game_state);
         do_one_life_cycle(game_state);
         draw_field(game_state);
     }
-    wait_for_action(SPASE);
+    wait_for_action(SPACE);
 }
+// -------------------- END OF MAIN FUNCTION --------------------
 
 int init(int argc, char* argv[], struct GameState game_state) {
     // инициализация
@@ -44,13 +47,18 @@ int init(int argc, char* argv[], struct GameState game_state) {
     // Нужно считать всё из потока, сохранить в state и очистить его,
     // чтобы считать нажатие SpaseBar для старта игры
     // Инициализировать ncurses и состояние
+    initsrc();
+    noecho();
+    curs_set(0);
+    nodelay(stdscr, TRUE);
+
     return 0;
 }
 
 void wait_for_action(int action) {
     // ожидает нажатия на SPASE
     while (1) {
-        if (getchar() == SPASE) {
+        if (getchar() == SPACE) {
             break;
         }
     }
@@ -72,4 +80,5 @@ void do_one_life_cycle(const struct GameState game_state) {
 }
 void finish(struct GameState game_state) {
     // закрытие режима работы ncurses и очистка памяти
+    endwin();
 }
