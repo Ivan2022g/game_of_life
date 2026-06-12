@@ -50,9 +50,21 @@ int main(int argc, char* argv[]) {
     }
     return 0;
 }
-int init(int argc, char* argv[], struct GameState game_state) {}
+
+int init(int argc, char* argv[], struct GameState game_state) {
+    // инициализация
+    // В потоке stdin есть строки из одного файла инициализации (.txt)
+    // Нужно считать всё из потока и очистить его, чтобы считать нажатие SpaseBar для старта игры
+    // Инициализировать ncurses и состояние
+}
+
 void wait_for_action(int action) {
-    // do something...
+    // ожидает нажатия на SPASE
+    while (1) {
+        if (getchar() == SPASE) {
+            break;
+        }
+    }
 }
 int game_over(struct GameState game_state) {
     // do something...
