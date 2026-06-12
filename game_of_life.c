@@ -32,13 +32,14 @@ struct Cell {
     int x;  // от 0 до WIDTH-1
     int y;  // от 0 до HEIGHT-1
 };
+void process(const struct GameState game_state);
 int init(int argc, char* argv[], struct GameState game_state);
 void wait_for_action(int action);
-int game_over(struct GameState game_state);
-void draw_field(struct GameState game_state);
-void process(struct GameState game_state);
-void do_one_life_cycle(struct GameState game_state);
-void finish(struct GameState game_state);
+int game_over(const struct GameState game_state);
+void draw_field(const struct GameState game_state);
+void do_one_life_cycle(const struct GameState game_state);
+void finish(const struct GameState game_state);
+void check_press_button(const struct GameState game_state);
 
 int main(int argc, char* argv[]) {
     const struct GameState game_state;
@@ -51,23 +52,25 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-int init(int argc, char* argv[], struct GameState game_state) {
-    // инициализация
-    // В потоке stdin есть строки из одного файла инициализации (.txt)
-    // Нужно считать всё из потока и очистить его, чтобы считать нажатие SpaseBar для старта игры
-    // Инициализировать ncurses и состояние
-}
-
 void process(struct GameState game_state) {
     draw_field(game_state);
     wait_for_action(SPASE);
 
     while (!game_over(game_state)) {
+        check_press_button(game_state);
         do_one_life_cycle(game_state);
-
         draw_field(game_state);
     }
     wait_for_action(SPASE);
+}
+
+int init(int argc, char* argv[], struct GameState game_state) {
+    // инициализация
+    // В потоке stdin есть строки из одного файла инициализации (.txt)
+    // Нужно считать всё из потока, сохранить в state и очистить его,
+    // чтобы считать нажатие SpaseBar для старта игры
+    // Инициализировать ncurses и состояние
+    return 0;
 }
 
 void wait_for_action(int action) {
@@ -78,14 +81,21 @@ void wait_for_action(int action) {
         }
     }
 }
+
+void check_press_button(struct GameState game_state) {
+    // считывает нажатия
+    // проверяет на рабочие клавиши (SpaceBar и A - увеличение/Z - уменьшение)
+}
 int game_over(struct GameState game_state) {
     // проверяет состояние игры на предмет того что игра закончилась
-    // был нажат пробел
 }
 void draw_field(const struct GameState game_state) {
     // всё что делает - рисует! Ничего больше!
 }
 
+void do_one_life_cycle(const struct GameState game_state) {
+    // выполняет основные операции по изменению состояния
+}
 void finish(struct GameState game_state) {
     // закрытие режима работы ncurses и очистка памяти
 }

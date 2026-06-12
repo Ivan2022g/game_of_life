@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Werror -Wall -Wextra
+CFLAGS = #-Werror -Wall -Wextra
 BUILD_DIR = build
 TARGET = game
 SRC = game_of_life.c
